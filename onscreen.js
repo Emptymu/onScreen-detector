@@ -89,18 +89,18 @@
   
   // detect watched elements on load
   document.addEventListener('load', function() {
-    if(test.watcher_count > 0) {
-      for (i = 1; i <= test.watcher_count; i++) {
-        test['watcher_' + i].detect(test['watcher_' + i].enterFn, test['watcher_' + i].leaveFn);
+    if(onScreen.watcher_count > 0) {
+      for (i = 1; i <= onScreen.watcher_count; i++) {
+        onScreen['watcher_' + i].detect(onScreen['watcher_' + i].enterFn, onScreen['watcher_' + i].leaveFn);
       }
     } 
   });
 
   // detect watched elements on scroll
   document.addEventListener('scroll', function() {
-    if(test.watcher_count > 0) {
-      for (i = 1; i <= test.watcher_count; i++) {
-        test['watcher_' + i].detect(test['watcher_' + i].enterFn, test['watcher_' + i].leaveFn);
+    if(onScreen.watcher_count > 0) {
+      for (i = 1; i <= onScreen.watcher_count; i++) {
+        onScreen['watcher_' + i].detect(onScreen['watcher_' + i].enterFn, onScreen['watcher_' + i].leaveFn);
       }
     } 
   });
@@ -108,15 +108,15 @@
 
   // detect watched elements on resizing
   window.addEventListener('resize', function() {
-    if(test.watcher_count > 0) {
-      for (i = 1; i <= test.watcher_count; i++) {
-        test['watcher_' + i].detect(test['watcher_' + i].enterFn, test['watcher_' + i].leaveFn);
+    if(onScreen.watcher_count > 0) {
+      for (i = 1; i <= onScreen.watcher_count; i++) {
+        onScreen['watcher_' + i].detect(onScreen['watcher_' + i].enterFn, onScreen['watcher_' + i].leaveFn);
       }
     } 
   });
   
 
-  return test = {
+  return onScreen = {
     watcher_count: 0,
     watch: watch
   }
