@@ -36,7 +36,6 @@
 
   // detect when elements enter or leave the viewport
   function detect(enterFn, leaveFn) {
-    
     this.pool.forEach(function(ele) {
       if ( window.pageYOffset + window.innerHeight >= getPosition(ele).top && 
            window.pageYOffset <= getPosition(ele).top + ele.offsetHeight) {
@@ -58,7 +57,6 @@
         }
       }
     }, this);
-
   }
 
   // watch elements and creat a watcher each time called
@@ -86,7 +84,6 @@
     }
   }
 
-  
   // detect watched elements on load
   document.addEventListener('load', function() {
     if(onScreen.watcher_count > 0) {
@@ -104,7 +101,6 @@
       }
     } 
   });
-  
 
   // detect watched elements on resizing
   window.addEventListener('resize', function() {
@@ -114,16 +110,9 @@
       }
     } 
   });
-  
 
   return onScreen = {
     watcher_count: 0,
     watch: watch
   }
 })();
-
-
-
-	
-
-
