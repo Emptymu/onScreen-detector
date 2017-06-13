@@ -5,6 +5,7 @@
   // get element position relative to the document
   function getPosition(ele) {
     var rect = ele.getBoundingClientRect();
+
     return {
       left: rect.left + document.body.scrollLeft,
       top: rect.top + document.body.scrollTop
@@ -43,7 +44,7 @@
         if (this.on.indexOf(ele) === -1) {
           this.on.push(ele);
           if (typeof enterFn !== 'undefined') {
-            enterFn(ele);
+            enterFn.call(ele, ele);
           }
         }
       }else {
@@ -52,7 +53,7 @@
           this.on.splice(this.on.indexOf(ele), 1);
           if(typeof leaveFn !== 'undefined') {
             console.log(typeof leaveFn);
-            leaveFn(ele);
+            leaveFn.call(ele, ele);
           }
         }
       }
@@ -71,21 +72,20 @@
       selectorList = selectors.split(/,\s*/);
 
       // build elements pool
-      selectorList.forEach(function(selector) {
-        select(selector).forEach(function(ele) {
-          pool.push(ele);
-        });
+      select(selectors).forEach(function(ele) {
+        pool.push(ele);
       });
 
       // create watcher
-      this['watcher_' + this.watcher_count] = new Watcher(pool, on, enterFn, leaveFn)
+      return this['watcher_' + this.watcher_count] = new Watcher(pool, on, enterFn, leaveFn);
+
     }else {
       return console.log('Only accepts string and selectors sperate by comma.');
     }
   }
 
   // detect watched elements on load
-  document.addEventListener('load', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     if(onScreen.watcher_count > 0) {
       for (i = 1; i <= onScreen.watcher_count; i++) {
         onScreen['watcher_' + i].detect(onScreen['watcher_' + i].enterFn, onScreen['watcher_' + i].leaveFn);
