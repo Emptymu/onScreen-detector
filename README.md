@@ -1,5 +1,5 @@
 # onScreen Detector
-This is a pure JS snippet to capture elements entered the browser viewport.
+This JS snippet captures elements entered the browser viewport.
 
 Call `onScreen.watch(selectors[, enterFn, leaveFn])` to watch selected elements. 
 
